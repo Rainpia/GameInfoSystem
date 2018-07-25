@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="app">
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>大合麻将</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="lib/angular-carousel.min.css">
+    <script src="lib/hammer.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-carousel.min.js"></script>
+    <script>
+        angular.module('app',['angular-carousel']).controller('CarouselDemoCtrl',function ($scope,Carousel) {
+            $scope.Carousel = Carousel;
+        });
+    </script>
+    <style>
+    </style>
+</head>
+<body>
+<div id="app"  >
+    <div class="flex-1 scroll-y">
+        <div class="page-one-main">
+            <div style="height: 10px;"></div>
+            <div class="logo"></div>
+            <div style="height: 10px;"></div>
+            <div class="commercial_one"></div>
+            <div style="height: 10px;"></div>
+            <div class="qc_code"></div>
+            <div style="height: 30px;"></div>
+            <div class="commercial_two"></div>
+            <div class="flex-row" style="height: 50px;">
+                <div class="flex-1"></div>
+                <div class="android_btn"></div>
+                <div class="flex-1"></div>
+                <div class="ios_btn"></div>
+                <div class="flex-1"></div>
+            </div>
+            <div style="height: 20px;color: white;text-align: center">30万人已下载的游戏，你还不赶快行动起来???</div>
+        </div>
+        <div class="page-two-main" style="position: relative" ng-controller="CarouselDemoCtrl">
+            <div style="height: 200px;" ng-carousel ng-carousel-name="example-carousel1" ng-carousel-watch="slides">
+                <slidecontainer>
+                    <slide >
+                        <div class="slide_one"></div>
+                    </slide>
+                    <slide >
+                        <div class="slide_two"></div>
+                    </slide>
+                    <slide >
+                        <div class="slide_three"></div>
+                    </slide>
+                </slidecontainer>
+            </div>
+            <div style="height: 50px;" class="justify-content-center">
+                <div class="flex-row">
+                    <div ng-click="Carousel.get('example-carousel1').toIndex($index)"  ng-class="{'icon_point_active':Carousel.get('example-carousel1').currentSlide == $index,'icon_point':Carousel.get('example-carousel1').currentSlide != $index}" ng-repeat="i in [0,1,2]"></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-three-main">
+            <div class="bottom-text-container">
+                [ 游戏说明 ] <br>
+                <div style="text-indent: 30px;">
+                    大合娱乐推出2017年重度力作 '大合麻将' 画面精美，玩法正宗，扣点、推倒胡、风耗子等玩法，更安全，更省流量，更全面，更正宗，大品牌有保证，绝对好玩，绝对刺激，尽在大合麻将。可以和亲朋好友一起游戏，咱山西人最地道的山西麻将。
+                </div>
+                <br>
+                [ 游戏特色 ] <br>
+                <div>
+                    1，玩法正宗，玩家多，随时随地打开手机就能玩。
+                </div>
+                <div>
+                    2，和好友，亲友和老乡一起畅游。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
