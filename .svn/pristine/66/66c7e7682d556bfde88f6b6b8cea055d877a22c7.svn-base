@@ -1,0 +1,34 @@
+<div class="flex-1 flex-column download-main scroll-y" style="position: relative;">
+    <div class="profile-info" style="" ng-hide="!isHaveIdentity">
+        <div style="margin: 20px auto;width: 80px;height: 80px;">
+            <img  src="{{groupMasterInfo.avatar}}"  alt="" style="width: 80px;height: 80px;">
+        </div>
+        <div style="width:100%;height: 40px;text-align: center;color:#15c84e;">
+            {{groupMasterInfo.name}}
+        </div>
+        <div style="width:100%;height: 40px;text-align: center;color:white;">
+            游戏ID：{{groupMasterInfo.gameUserId}}
+        </div>
+    </div>
+    <div class="" style="margin: 10px auto;width: 200px;height: 100px" ng-hide="isHaveIdentity">
+        <img src="http://image.cdn.gfgood.com/market/down/logo.png" style="width: 100%;height: 100%;" alt="">
+    </div>
+    <div  class="" style="height: 120px;width: 120px;margin: 0 auto;" ng-show="qrCodeUrl">
+        <img src="http://qr.topscan.com/api.php?text={{qrCodeUrl}}"  style="width: 120px;height: 120px;"/>
+    </div>
+    <div style="height: 150px;" ng-hide="isHaveIdentity">
+        <div class="flex-row">
+            <div class="flex-1"></div>
+            <img src="http://image.cdn.gfgood.com/market/down/girl.png" alt="" style="width: 150px;height: 150px;">
+            <div class="flex-1"></div>
+            <img src="http://image.cdn.gfgood.com/market/down/boy.png" alt="" style="width: 150px;height: 150px;">
+            <div class="flex-1"></div>
+        </div>
+    </div>
+    <div style="width: 200px;margin: 0 auto;">
+        <div class="download-btn" ng-click="download('android')"><a href="http://file.cdn.gfgood.com/game/apk/game_1.0.0_20170321.apk{{downloadParams}}">安卓系统下载</a></div>
+    </div>
+    <div style="width: 200px;margin: 0 auto;">
+        <div class="download-btn" ng-click="download('ios')"><a href="https://itunes.apple.com/us/app/id1212222282?mt=8">苹果系统下载</a></div>
+    </div>
+</div>

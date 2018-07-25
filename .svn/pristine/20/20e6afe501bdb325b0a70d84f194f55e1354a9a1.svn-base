@@ -1,0 +1,206 @@
+/**
+ * Created by ryp on 2/6/17.
+ */
+(function () {
+    var app=angular.module('app');
+    //api接口名字
+    app.constant('$API_NAME', {
+        DownReport: 'user.downreport',
+        Login: 'user.login',
+        CanRegister: 'user.canregister',
+        Register: 'user.register',
+        GetRegister: 'user.getregister',
+        AgentDayIncome: 'user.getagentdayincome',
+        AgentDayIncomeDetail: 'user.getagentdayincomedetail',
+        AgentMonthIncome: 'user.getagentmonthincome',
+        AgentUserIncomeRecord: 'user.getagentuserincomerecords',
+        UsableCash:'user.getusablecash',
+        AgentCash: 'user.agentcash',
+        AgentCashRecord: 'user.getagentcashrecords',
+        AgentRelatedUsers: 'user.getagentrelatedusers',
+        AgentRelateGroup: 'user.agentrelategroup',
+        BankList: 'user.getbanklist',
+        ShareUrl:'user.getshareurl',
+        WeixinConfig:'user.getjssdksignature',
+        GroupMasterInfo:'user.getgroupmaster',
+        GroupMemberInfo:'user.getgroupmember',
+        RelateMember:'user.relatemember'
+    });
+    app.constant('$CODE_MESSAGE', {
+        700: '用户身份检验失败',
+        701: '请先登录游戏',
+        702: '你目前没有余额可提',
+        703: '你已经登记过',
+        704: '微信授权错误',
+        705: '代理类型不正确',
+        706: '查询用户类型不正确',
+        707: '该手机号码不存在',
+        708: '手机号码和游戏ID不匹配',
+    });
+    //数据请求
+    app.factory('SystemService',function ($http,$API_NAME,$CODE_MESSAGE) {
+        var baseUrl= 'http://market.gfgood.com/service/rest?';
+        var requestUrl = '';
+        // var crossDomainStr = '&callback=JSON_CALLBACK';
+        var systemService = {};
+        function JsonToKeyValue(obj) {
+            var str = [];
+            for(var p in obj){
+                if(obj[p] && typeof obj[p] == 'object'){
+                    for(var m in obj[p]){
+                        str.push(p+ '['+m+']'+ "=" + encodeURIComponent(obj[p][m]));
+                    }
+                }else{
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                }
+            }
+            return str.join("&");
+        }
+        
+        function requestHttp(url,params) {
+            console.log('params:',params);
+            return $http({
+                url:url,
+                method:'POST',
+                data:params,
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+                transformRequest: JsonToKeyValue,
+            }).success(function(res){
+                if(res.code == 200){
+                    return res;
+                }else if (res.code>= 702 && res.code < 799){
+                    alert(res.message);
+                }else{
+                    return res;
+                }
+            });
+        }
+
+        //获取群主信息接口
+        systemService.getGroupMasterInfo=function (params) {
+            params.api = $API_NAME.GroupMasterInfo;
+            requestUrl =  baseUrl +'api='+$API_NAME.GroupMasterInfo;
+            return requestHttp(requestUrl,params);
+        };
+
+        //获取群员信息接口
+        systemService.getGroupMemberInfo=function (params) {
+            params.api = $API_NAME.GroupMemberInfo;
+            requestUrl =  baseUrl +'api='+$API_NAME.GroupMemberInfo;
+            return requestHttp(requestUrl,params);
+        };
+
+        //关联群员
+        systemService.relateMember=function (params) {
+            params.api = $API_NAME.RelateMember;
+            requestUrl =  baseUrl +'api='+$API_NAME.RelateMember;
+            return requestHttp(requestUrl,params);
+        };
+
+        //获取微信配置接口
+        systemService.getWeinxinConfig=function (params) {
+            params.api = $API_NAME.WeixinConfig;
+            requestUrl =  baseUrl +'api='+$API_NAME.WeixinConfig;
+            return requestHttp(requestUrl,params);
+        };
+        
+        //下载页面接口
+        systemService.downReport=function (params) {
+            params.api = $API_NAME.DownReport;
+            requestUrl =  baseUrl +'api='+$API_NAME.DownReport;
+            return requestHttp(requestUrl,params);
+        };
+        //登录接口
+        systemService.login=function (params) {
+            params.api = $API_NAME.Login;
+            requestUrl =  baseUrl +'api='+$API_NAME.Login;
+            return requestHttp(requestUrl,params);
+        };
+        //判断是否可以登记信息
+        systemService.canRegister=function (params) {
+            params.api = $API_NAME.CanRegister;
+            requestUrl =  baseUrl +'api='+$API_NAME.CanRegister;
+            return requestHttp(requestUrl,params);
+        };
+        //提交登记信息
+        systemService.register=function (params) {
+            params.api = $API_NAME.Register;
+            requestUrl =  baseUrl +'api='+$API_NAME.Register;
+            return requestHttp(requestUrl,params);
+        };
+        //获取登记信息
+        systemService.getRegister=function (params) {
+            params.api = $API_NAME.GetRegister;
+            requestUrl =  baseUrl +'api='+$API_NAME.GetRegister;
+            return requestHttp(requestUrl,params);
+        };
+        //获取日收益记录
+        systemService.getAgentDayIncome=function (params) {
+            params.api = $API_NAME.AgentDayIncome;
+            requestUrl =  baseUrl +'api='+$API_NAME.AgentDayIncome;
+            return requestHttp(requestUrl,params);
+        };
+        //获取月收益记录详情
+        systemService.getAgentDayIncomeDetail=function (params) {
+            params.api = $API_NAME.AgentDayIncomeDetail;
+            requestUrl =  baseUrl +'api='+$API_NAME.AgentDayIncomeDetail;
+            return requestHttp(requestUrl,params);
+        };
+        //获取月收益记录
+        systemService.getAgentMonthIncome=function (params) {
+            params.api = $API_NAME.AgentMonthIncome;
+            requestUrl =  baseUrl +'api='+$API_NAME.AgentMonthIncome;
+            return requestHttp(requestUrl,params);
+        };
+        //获取代理用户收益记录
+        systemService.getAgentUserIncomeRecord=function (params) {
+            params.api = $API_NAME.AgentUserIncomeRecord;
+            requestUrl =  baseUrl +'api='+$API_NAME.AgentUserIncomeRecord;
+            return requestHttp(requestUrl,params);
+        };
+        //提现
+        systemService.getUsableCash=function (params) {
+            params.api = $API_NAME.UsableCash;
+            requestUrl =  baseUrl +'api='+$API_NAME.UsableCash;
+            return requestHttp(requestUrl,params);
+        };
+        //提现
+        systemService.agentCash=function (params) {
+            params.api = $API_NAME.AgentCash;
+            requestUrl =  baseUrl +'api='+$API_NAME.AgentCash;
+            return requestHttp(requestUrl,params);
+        };
+        //获取提现记录
+        systemService.getAgentCashRecord=function (params) {
+            params.api = $API_NAME.AgentCashRecord;
+            requestUrl =  baseUrl +'api='+$API_NAME.AgentCashRecord;
+            return requestHttp(requestUrl,params);
+        };
+        //获取关联群主信息
+        systemService.getAgentRelatedUsers=function (params) {
+            params.api = $API_NAME.AgentRelatedUsers;
+            requestUrl =  baseUrl +'api='+$API_NAME.AgentRelatedUsers;
+            return requestHttp(requestUrl,params);
+        };
+        //关联群主
+        systemService.agentRelateGroup=function (params) {
+            params.api = $API_NAME.AgentRelateGroup;
+            requestUrl =  baseUrl +'api='+$API_NAME.AgentRelateGroup;
+            return requestHttp(requestUrl,params);
+        };
+        //得到银行卡类型
+        systemService.getBankList=function (params) {
+            params.api = $API_NAME.BankList;
+            requestUrl =  baseUrl +'api='+$API_NAME.BankList;
+            return requestHttp(requestUrl,params);
+        };
+        //得到分享链接
+        systemService.getShareUrl=function (params) {
+            params.api = $API_NAME.ShareUrl;
+            requestUrl =  baseUrl +'api='+$API_NAME.ShareUrl;
+            return requestHttp(requestUrl,params);
+        };
+        
+        return systemService;
+    });
+})()

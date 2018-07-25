@@ -1,0 +1,26 @@
+<div class="flex-1 flex-column " ng-controller="LoginCtrl">
+    <div class="group-master-main flex-1"  ng-controller="GroupMemberCtrl">
+        <div class="content-center profile">
+            <div>
+                <div class="profile-image justify-content-center">
+                    <img  src="{{groupMemberInfo.avatar}}"  alt="">
+                </div>
+                <div class="justify-content-center profile-text-2">
+                    群员
+                </div>
+            </div>
+        </div>
+        <div  class="link-list flex-row">
+            <div class="label ">昵称</div>
+            <div class="value">{{groupMemberInfo.nickName}}</div>
+        </div>
+        <div  class="link-list flex-row">
+            <div class="label ">游戏ID</div>
+            <div class="value">{{groupMemberInfo.gameId}}</div>
+        </div>
+        <div  class="link-list flex-row">
+            <div class="label ">特征码</div>
+            <div class="value">{{groupMemberInfo.certificate}}</div>
+        </div>
+    </div>
+</div>

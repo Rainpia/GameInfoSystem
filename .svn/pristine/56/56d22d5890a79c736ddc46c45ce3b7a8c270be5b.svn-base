@@ -1,0 +1,149 @@
+(function(){
+    var app=angular.module('app');
+    app.controller('AgentRelateUserCtrl',function($scope,$http,SystemService,$stateParams){
+        console.log('AgentRelateUserCtrl');
+        var apiParams = $scope.deepCopy($scope.baseParams);
+        $scope.selectedTab = {id:0};
+        $scope.agentRelateUser = [];
+        $scope.tabTitle=[{id:0,text:'普通群员',active:true},{id:1,text:'群主',active:false},{id:2,text:'代理商',active:false}];
+        $scope.label = ['ID','头像','昵称','可用元宝','注册时间'];
+
+        var busy = false;
+
+        $scope.loadMore = function() {
+            if (busy) {
+                return false;
+            }
+            busy = true;
+            var params = {user_type:$scope.selectedTab.id,last_game_user_id:$scope.agentRelateUser[$scope.agentRelateUser.length-1].game_user_id,last_register_time:$scope.agentRelateUser[$scope.agentRelateUser.length-1].register_time};
+            apiParams.params = params;
+            requestAgentUser(1);
+        };
+
+        $scope.selectTab=function(item){
+            $scope.selectedTab = item;
+            angular.forEach($scope.tabTitle,function(ite){
+                ite.active = false;
+                if(ite.id == item.id){
+                    ite.active = true;
+                }
+            });
+            switch(item.id){
+                case 0:
+                    $scope.label = ['ID','头像','昵称','可用元宝','注册时间'];
+                    var params = {user_type:item.id,last_game_user_id:0,last_register_time:0};
+                    apiParams.params = params;
+                    requestAgentUser(0);
+                    break;
+                case 1:
+                    $scope.label = ['ID','头像','昵称','群员数量','注册时间'];
+                    var params = {user_type:item.id,last_game_user_id:0,last_register_time:0};
+                    apiParams.params = params;
+                    requestAgentUser(0);
+                    break;
+                case 2:
+                    $scope.label = ['ID','头像','昵称','群员数量','注册时间'];
+                    var params = {user_type:item.id,last_game_user_id:0,last_register_time:0};
+                    apiParams.params = params;
+                    requestAgentUser(0);
+                    break;
+            }
+
+        };
+        //得到推广用户信息
+        function requestAgentUser(type) {
+            SystemService.getAgentRelatedUsers(apiParams).then(function (res) {
+                if(type){
+                    $scope.agentRelateUser = $scope.agentRelateUser.concat(res.data.data);
+                }else{
+                    $scope.agentRelateUser = res.data.data;
+                }
+                busy = false;
+                console.log('res',res.data);
+            });
+        }
+
+
+        function startRequest() {
+            if($scope.baseParams.user_token == ''){
+                return;
+            }
+            if($stateParams.tab_id){
+                $scope.selectTab($scope.tabTitle[$stateParams.tab_id]);
+            }else{
+                $scope.selectTab($scope.tabTitle[0]);
+            }
+        }
+        startRequest();
+        $scope.$on('GetUserMessage',function () {
+            startRequest();
+        })
+    });
+    app.controller('RelateUserCtrl',function($scope,$state,SystemService){
+        console.log('RelateUserCtrl');
+        //提交关联群主信息
+        $scope.relateUserMessage={};
+        var apiParams = $scope.deepCopy($scope.baseParams);
+        $scope.submit=function(){
+            if($scope.relateUserMessage.certificate.toString().length == ''){
+                $scope.error_message = '群主特征码不能为空';
+            }else{
+                apiParams.params = $scope.relateUserMessage;
+                SystemService.agentRelateGroup(apiParams).then(function (res) {
+                    if(res.data.code == 200){
+                        alert('资料已提交，正在审核中');
+                        $state.go('agentRelateUser');
+                    }
+                });
+            }
+        }
+    });
+    app.controller('RelateMemberCtrl',function($scope,$state,SystemService){
+        console.log('RelateMemberCtrl');
+        //提交关联群员信息
+        $scope.relateMemberMessage={
+            member_game_user_id:'',
+            certificate:''
+        };
+        var apiParams = $scope.deepCopy($scope.baseParams);
+        $scope.submit=function(){
+            apiParams.params = $scope.relateMemberMessage;
+            SystemService.relateMember(apiParams).then(function (res) {
+                if(res.data.code == 200){
+                    $state.go('groupMember');
+                }
+            });
+        }
+    });
+    app.controller('MemberMessageCtrl',function($scope,SystemService,$state){
+        console.log('MemberMessageCtrl');
+        $scope.error_message = '';
+
+        //登记信息
+        $scope.memberMessage={
+            agent_level:1,
+            group_game_user_id:'',
+            phone_number:null,
+            name:'',
+        }
+        $scope.disappearMessage = function () {
+            $scope.error_message = "";
+        }
+        //提交登记信息
+        $scope.submit=function(){
+            if($scope.memberMessage.phone_number.toString().length != 11){
+                $scope.error_message = '手机号码不正确';
+            }else{
+                var apiParams = $scope.deepCopy($scope.baseParams);
+                apiParams.params = $scope.memberMessage;
+                console.log(apiParams);
+                SystemService.submitMemberMessage(apiParams).then(function (res) {
+                    console.log('res',res.data);
+                    if(res.data.code == 200){
+                        $state.go('agentRelateUser',{tab_id:1});
+                    }
+                });
+            }
+        }
+    });
+})()

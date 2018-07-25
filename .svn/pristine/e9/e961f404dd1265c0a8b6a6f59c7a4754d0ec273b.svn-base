@@ -1,0 +1,347 @@
+.flex-row {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-direction: row; }
+
+.flex-column, body > div#app {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-direction: column; }
+
+.justify-content-center, .content-center, .register-form-main .user-type input + span {
+  justify-content: center;
+  display: flex; }
+
+.align-content-center, .content-center, .register-form-main .user-type input + span {
+  align-items: center;
+  display: flex; }
+
+.flex-1, .register-form-main .form-field .value, .register-show-main .form-field .value, .group-master-main .link-list .value {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1; }
+
+.flex-2 {
+  -webkit-box-flex: 2;
+  -moz-box-flex: 2;
+  box-flex: 2;
+  -webkit-flex: 2;
+  -moz-flex: 2;
+  -ms-flex: 2;
+  flex: 2; }
+
+.flex-3 {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -moz-flex: 3;
+  -ms-flex: 3;
+  flex: 3; }
+
+.flex-4 {
+  -webkit-box-flex: 4;
+  -moz-box-flex: 4;
+  box-flex: 4;
+  -webkit-flex: 4;
+  -moz-flex: 4;
+  -ms-flex: 4;
+  flex: 4; }
+
+.flex-5 {
+  -webkit-box-flex: 5;
+  -moz-box-flex: 5;
+  box-flex: 5;
+  -webkit-flex: 5;
+  -moz-flex: 5;
+  -ms-flex: 5;
+  flex: 5; }
+
+.flex-6 {
+  -webkit-box-flex: 6;
+  -moz-box-flex: 6;
+  box-flex: 6;
+  -webkit-flex: 6;
+  -moz-flex: 6;
+  -ms-flex: 6;
+  flex: 6; }
+
+.flex-7 {
+  -webkit-box-flex: 7;
+  -moz-box-flex: 7;
+  box-flex: 7;
+  -webkit-flex: 7;
+  -moz-flex: 7;
+  -ms-flex: 7;
+  flex: 7; }
+
+.flex-8 {
+  -webkit-box-flex: 8;
+  -moz-box-flex: 8;
+  box-flex: 8;
+  -webkit-flex: 8;
+  -moz-flex: 8;
+  -ms-flex: 8;
+  flex: 8; }
+
+.flex-9 {
+  -webkit-box-flex: 9;
+  -moz-box-flex: 9;
+  box-flex: 9;
+  -webkit-flex: 9;
+  -moz-flex: 9;
+  -ms-flex: 9;
+  flex: 9; }
+
+.scroll-y {
+  overflow-y: scroll;
+  overflow-x: hidden; }
+  .scroll-y::-webkit-scrollbar {
+    width: 0px;
+    height: 0px; }
+
+.text-overflow {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+body {
+  font-size: 16px;
+  font-weight: normal;
+  color: #4b4b4b;
+  background: #f2f2f2;
+  overflow: hidden;
+  padding: 0;
+  margin: 0; }
+  body > div#app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+.download-main {
+  background: radial-gradient(circle, #faf9c1, #f3d7a8); }
+  .download-main .download-btn {
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    margin: 20px 0;
+    background: #15c84e;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 3px; }
+    .download-main .download-btn a, .download-main .download-btn a:hover, .download-main .download-btn a:active, .download-main .download-btn a:visited, .download-main .download-btn a:focus {
+      text-decoration: none;
+      color: white; }
+
+.register-form-main {
+  padding: 20px;
+  margin-top: 20px;
+  background: white; }
+  .register-form-main .form-field {
+    height: 30px;
+    margin: 10px 0; }
+    .register-form-main .form-field .label {
+      width: 80px;
+      line-height: 30px;
+      padding-right: 10px; }
+    .register-form-main .form-field .value {
+      border-bottom: 1px solid grey; }
+    .register-form-main .form-field input, .register-form-main .form-field select {
+      border: 0;
+      background: transparent;
+      font-size: 16px; }
+      .register-form-main .form-field input:focus, .register-form-main .form-field select:focus {
+        outline-offset: 0;
+        outline: none; }
+    .register-form-main .form-field button {
+      width: 200px;
+      text-align: center;
+      background: #15c84e;
+      border: 0;
+      border-radius: 3px;
+      font-size: 18px;
+      color: white; }
+      .register-form-main .form-field button:focus {
+        outline: none; }
+  .register-form-main .user-type input:checked + span i {
+    display: inline-block; }
+  .register-form-main .user-type input + span {
+    margin-top: 3px;
+    margin-right: 5px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+    border-radius: 50%; }
+    .register-form-main .user-type input + span i {
+      display: none;
+      width: 8px;
+      height: 8px;
+      background: #008000;
+      border-radius: 50%; }
+
+.register-show-main {
+  margin-top: 30px;
+  background: white; }
+  .register-show-main .form-field {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid grey; }
+    .register-show-main .form-field .label {
+      width: 80px;
+      padding-left: 10px; }
+    .register-show-main .form-field .value {
+      text-align: right;
+      padding-right: 10px; }
+    .register-show-main .form-field:nth-last-child(1) {
+      border: 0; }
+
+.income-main .balance {
+  position: relative;
+  background: #4b4a59;
+  height: 150px;
+  min-height: 150px;
+  color: white; }
+  .income-main .balance span {
+    font-size: 35px; }
+  .income-main .balance .btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: #f33042; }
+.income-main .searchBox {
+  height: 30px;
+  padding: 0 10px;
+  margin: 10px 0; }
+  .income-main .searchBox input {
+    font-size: 16px; }
+    .income-main .searchBox input:focus {
+      outline: none; }
+.income-main .income-table {
+  background: white; }
+  .income-main .income-table .tab-main {
+    font-size: 17px;
+    height: 40px;
+    min-height: 40px;
+    line-height: 40px; }
+    .income-main .income-table .tab-main .tab-panel {
+      text-align: center; }
+      .income-main .income-table .tab-main .tab-panel.active {
+        color: #ff9837;
+        border-bottom: 2px solid #ff9837; }
+  .income-main .income-table .table-head, .income-main .income-table .table-body {
+    text-align: center;
+    height: 35px;
+    line-height: 35px;
+    margin: 3px 0;
+    font-size: 14px; }
+    .income-main .income-table .table-head img, .income-main .income-table .table-body img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%; }
+  .income-main .income-table .table-head {
+    color: #15c84e;
+    background: white;
+    height: 30px;
+    min-height: 30px;
+    line-height: 30px; }
+  .income-main .income-table .agent-user-income-record .table-head div:nth-child(5), .income-main .income-table .agent-user-income-record .table-body div:nth-child(5), .income-main .income-table .agent-related-user .table-head div:nth-child(5), .income-main .income-table .agent-related-user .table-body div:nth-child(5) {
+    min-width: 150px; }
+  .income-main .income-table .agent-user-income-record .table-head div:nth-child(4), .income-main .income-table .agent-user-income-record .table-body div:nth-child(4), .income-main .income-table .agent-related-user .table-head div:nth-child(4), .income-main .income-table .agent-related-user .table-body div:nth-child(4) {
+    min-width: 60px; }
+  .income-main .income-table .agent-cash-record .table-head div:nth-child(2), .income-main .income-table .agent-cash-record .table-body div:nth-child(2) {
+    min-width: 150px; }
+
+.group-master-main {
+  background: radial-gradient(circle, #faf9c1, #f3d7a8);
+  margin-top: 0; }
+  .group-master-main .profile {
+    background: #4b4a59;
+    height: 200px;
+    border-top: 1px solid #414141; }
+    .group-master-main .profile .profile-image {
+      position: relative; }
+      .group-master-main .profile .profile-image img {
+        width: 80px;
+        height: 80px;
+        border-radius: 80px; }
+    .group-master-main .profile .profile-text-1 {
+      padding-top: 5px;
+      font-size: 16px;
+      color: #15c84e; }
+    .group-master-main .profile .profile-text-2 {
+      font-size: 14px;
+      color: #fff;
+      padding: 10px 0; }
+  .group-master-main .link-list {
+    background: #fff;
+    height: 40px;
+    margin: 10px 0;
+    font-size: 16px;
+    padding: 0px 5px;
+    box-sizing: border-box; }
+    .group-master-main .link-list .label {
+      width: 100px;
+      height: 40px;
+      line-height: 40px; }
+    .group-master-main .link-list .value {
+      height: 40px;
+      line-height: 40px;
+      text-align: right; }
+
+.table-list-container {
+  height: 120px;
+  font-size: 14px;
+  border-bottom: 1px solid grey; }
+  .table-list-container .table-left-container {
+    width: 100px;
+    height: 120px;
+    color: red; }
+    .table-list-container .table-left-container .text {
+      height: 40px;
+      line-height: 60px;
+      text-align: center;
+      color: green; }
+    .table-list-container .table-left-container .img {
+      height: 80px;
+      height: 80px; }
+      .table-list-container .table-left-container .img > div {
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
+        border: 1px solid green; }
+  .table-list-container .table-right-container {
+    font-size: 11px;
+    padding: 10px 0; }
+    .table-list-container .table-right-container .order {
+      color: orange; }
+
+/*# sourceMappingURL=style.css.map */

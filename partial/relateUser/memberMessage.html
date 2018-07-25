@@ -1,0 +1,40 @@
+<div class="flex-1 scroll-y" ng-controller="LoginCtrl"  >
+    <div class="register-form-main" ng-controller="MemberMessageCtrl">
+        <div class="flex-row user-type form-field">
+            <label class="flex-1 flex-row">
+                <input type="radio" style="display: none" checked ng-value=1 ng-model="memberMessage.agent_level" name="userType">
+                <span> <i></i> </span>
+                <span>群主</span>
+            </label>
+            <label class="flex-1 flex-row">
+                <input type="radio" style="display: none" ng-value=2 ng-model="memberMessage.agent_level" name="userType">
+                <span> <i></i> </span>
+                <span>代理商 </span>
+            </label>
+        </div>
+        <div class="flex-row form-field">
+            <div class="label">游戏ID</div>
+            <div class="value flex-row">
+                <input class="flex-1" type="text" ng-model="memberMessage.group_game_user_id" required>
+            </div>
+        </div>
+        <div class="flex-row form-field">
+            <div class="label">姓名</div>
+            <div class="value flex-row">
+                <input class="flex-1" type="text" ng-model="memberMessage.name">
+            </div>
+        </div>
+        <div class="flex-row form-field">
+            <div class="label">手机</div>
+            <div class="value flex-row">
+                <input class="flex-1" type="text" maxlength="11" ng-focus="disappearMessage()" ng-model="memberMessage.phone_number">
+            </div>
+        </div>
+        <div style="height: 20px;color:red;font-size: 12px;" >
+            {{error_message}}
+        </div>
+        <div class="flex-row form-field justify-content-center" >
+            <button ng-click="submit()">提交</button>
+        </div>
+    </div>
+</div>
