@@ -1,0 +1,27 @@
+<div class="flex-1 flex-column" ng-controller="LoginCtrl">
+    <div class="income-main flex-1 flex-column" ng-controller="AgentRelateUserCtrl">
+        <!--<div class="flex-row searchBox">-->
+            <!--<input type="text" class="flex-1"  placeholder="请输入id" ng-model="query">-->
+        <!--</div>-->
+        <div class="income-table flex-1 flex-column">
+            <div class="flex-row tab-main">
+                <div class="tab-panel flex-1" ng-click="selectTab(item)" ng-repeat="item in tabTitle" ng-class="{'active':item.active}">{{item.text}}</div>
+            </div>
+            <div class="flex-1 flex-column agent-related-user">
+                <div class="table-head flex-row">
+                    <div class="flex-1" ng-repeat="item in label">{{item}}</div>
+                </div>
+                <div class="scroll-y flex-1" when-scrolled="loadMore()">
+                    <div class="table-body flex-row" ng-repeat="item in agentRelateUser">
+                        <div class="flex-1" >{{item.game_user_id}}</div>
+                        <div class="flex-1" ><img src="{{item.avatar}}" alt="" ng-show="item.avatar!=''"></div>
+                        <div class="flex-1" >{{item.game_user_nickname}}</div>
+                        <div class="flex-1" ng-show="selectedTab.id == 0" >{{item.usable_goldingot}}</div>
+                        <div class="flex-1" ng-show="selectedTab.id != 0" >{{item.member_count}}</div>
+                        <div class="flex-1" >{{item.register_time_desc}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

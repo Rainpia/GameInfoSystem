@@ -1,0 +1,70 @@
+/**
+ * Created by ryp on 3/22/17.
+ */
+(function(){
+    var app=angular.module('app');
+    app.controller('GroupMasterCtrl',function($scope,SystemService,$state){
+        console.log('GroupMasterCtrl');
+        $scope.groupMasterInfo = {
+            avatar:'',
+            gameUserId:'',
+            name:''
+        }
+        function startRequest() {
+            if($scope.baseParams.user_token == ''){
+                return;
+            }
+            //if($scope.agent_level==0){
+            //    $state.go('groupMember');
+            //}else {
+                //判断是否可以提交登记信息
+                SystemService.getGroupMasterInfo($scope.deepCopy($scope.baseParams)).then(function (res) {
+                    console.log('GroupMasterCtrl', res.data.data);
+                    $scope.groupMasterInfo.avatar = res.data.data.avatar;
+                    $scope.groupMasterInfo.name = res.data.data.name;
+                    $scope.groupMasterInfo.gameUserId = res.data.data.game_user_id;
+                    if (res.data.data.avatar) {
+                        $scope.share_message.share_icon = res.data.data.avatar;
+                    }
+                });
+            //}
+        }
+        startRequest();
+        $scope.$on('GetUserMessage',function () {
+            startRequest();
+        });
+    });
+    app.controller('GroupMemberCtrl',function($scope,$state,SystemService){
+        console.log('GroupMemberCtrl');
+        $scope.groupMemberInfo = {
+            avatar:'',
+            certificate:'',
+            nickName:'',
+            gameUserId:''
+        }
+        function startRequest() {
+            if($scope.baseParams.user_token == ''){
+                return;
+            }
+
+            //判断是否可以提交登记信息
+            SystemService.getGroupMemberInfo($scope.deepCopy($scope.baseParams)).then(function (res) {
+                console.log('GroupMemberCtrl',res);
+                console.log('GroupMasterCtrl',res.data.data);
+                $scope.groupMemberInfo.avatar = res.data.data.avatar;
+                $scope.groupMemberInfo.nickName = res.data.data.nickname;
+                $scope.groupMemberInfo.gameUserId = res.data.data.game_user_id;
+                $scope.groupMemberInfo.certificate = res.data.data.certificate;
+                if(res.data.data.avatar){
+                    $scope.share_message.share_icon = res.data.data.avatar;
+                }
+            });
+
+
+        }
+        startRequest();
+        $scope.$on('GetUserMessage',function () {
+            startRequest();
+        });
+    });
+})()
